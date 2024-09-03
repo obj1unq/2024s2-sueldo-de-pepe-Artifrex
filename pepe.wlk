@@ -62,28 +62,129 @@ object pepe {
 
 }
 
+object sofia {
 
-object consultor {
+    var categoria = cadete
+    var bonoResultado = fijo
 
-    var neto = 30000
-
-    method neto() {
-        return neto
+    method categoria(_categoria) {
+        categoria = _categoria
     }
 
-    method aumentar(aumento) {
-        neto = neto + aumento
+    method bonoResultado(_bonoResultado) {
+        bonoResultado = _bonoResultado 
     } 
 
+    method extraResultado() {
+        return bonoResultado.valor(self)
+    }
 
+    method sueldo() {
+        return self.neto() + self.extraResultado()
+    }
+
+    method neto() {
+        return categoria.neto() *1.3        
+    }
 }
 
-object cadete { 
+object roque {
+    var bonoResultado = null
+
     method neto() {
-        return 20000
+        return 28000
+    }
+
+    method sueldo() {
+        return self.neto() + self.extraResultado() + 9000
+    }
+
+    method extraResultado() {
+        return bonoResultado.valor(self)
+    }
+
+    method bonoResultado(_bonoResultado) {
+        bonoResultado = _bonoResultado
     }
 
 }
+
+object ernesto {
+
+    var companero = pepe
+    var bonoPresentismo = null
+
+    method bonoPresentismo (_bonoPresentismo) {
+        bonoPresentismo = _bonoPresentismo
+    }
+
+    method companero(_companero) {
+        companero = _companero
+    }
+
+    method neto() {
+        return companero.neto()
+    }
+
+    method sueldo() {
+        return self.neto() + self.extraPresentismo() 
+    }
+
+    method extraPresentismo() {
+        return bonoPresentismo.valor(self)
+    }
+
+    method faltas() {
+        return 0
+    }
+}
+
+object medioTiempo {
+
+    method categoriaBase(categoria) {
+        categoria.neto(categoria.neto() / 2)
+    }
+}
+
+
+object vendedor {
+
+    var hayMuchasVentas = true
+
+    method neto() {
+      /*if (hayMuchasVentas) {
+        return 16000 * 1.25
+      }
+      else {
+        return 16000
+      }*/
+      return if (hayMuchasVentas) 16000 * 1.25 else 16000
+    }
+
+    method activarAumentoPorMuchasVentas() {
+        hayMuchasVentas = true
+    }
+    
+    method desactivarAumentoPorMuchasVentas() {
+        hayMuchasVentas = false
+    }
+
+}
+
+object cadete {
+
+    var property neto = 20000
+    /*
+    ese property es igual a 
+        method neto() {
+            return neto
+        }
+        method neto(_neto) {
+            neto = _neto
+        }
+    */
+}
+
 object gerente {
     method neto() {
         return 15000
@@ -91,7 +192,6 @@ object gerente {
 }
 
 //bonos de resultado
-
 
 object fijo {
     method valor(empleado) {
