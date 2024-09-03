@@ -75,3 +75,27 @@ describe "Sueldo Pepe" {
 	}
 	
 }
+
+	test "Bonus Pepe" {
+		medioTiempo.categoriaBase(cadete)
+		pepe.categoria(cadete)
+		pepe.bonoResultado(porcentaje)
+		pepe.bonoPresentismo(demagogico)
+		pepe.faltas(1)
+		assert.equals(11500, pepe.sueldo())
+	}
+
+	test "Bonus Ernesto" {
+		medioTiempo.categoriaBase(cadete)
+		pepe.categoria(cadete)
+		ernesto.companero(pepe)
+		ernesto.bonoPresentismo(ajuste)
+		assert.equals(10100, ernesto.sueldo())
+	}
+
+	test "Bonus Roque" {
+		medioTiempo.categoriaBase(cadete)
+		roque.categoria(cadete)
+		roque.bonoResultado(fijo)
+		assert.equals(37800, roque.sueldo())
+	}

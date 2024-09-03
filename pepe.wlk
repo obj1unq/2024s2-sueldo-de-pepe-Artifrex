@@ -90,6 +90,11 @@ object sofia {
 
 object roque {
     var bonoResultado = null
+    var categoria = null
+
+    method categoria(_categoria) {
+        categoria = _categoria
+    }
 
     method neto() {
         return 28000
